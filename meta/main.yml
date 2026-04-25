@@ -16,6 +16,12 @@ galaxy_info:
         - "7"
         - "8"
         - "9"
+    - name: SUSE
+      versions:
+        - all
+    - name: opensuse
+      versions:
+        - all
   galaxy_tags:
     - centos
     - el6
@@ -26,6 +32,8 @@ galaxy_info:
     - fedora
     - network
     - networking
+    - opensuse
     - redhat
     - rhel
+    - suse
     - system

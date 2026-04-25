@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: BSD-3-Clause
+---
+# SUSE always uses NetworkManager, not initscripts.
+# Without this, minimal VMs where NM is installed but not yet started
+# would fall back to 'initscripts', triggering a 'network-scripts' package
+# install that doesn't exist on SUSE.
+__network_provider_current: nm
+
+# SUSE packages gobject bindings without -base suffix
+__network_gobject_package_suffix: ""
+
+# SUSE needs the NM GIR typelib as a separate package;
+# it is not a hard dependency of NetworkManager
+__network_packages_default_nm_extra:
+  - typelib-1_0-NM-1_0

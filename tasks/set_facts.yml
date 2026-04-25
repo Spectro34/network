@@ -7,6 +7,21 @@
     difference(ansible_facts.keys() | list) | length > 0
   no_log: true
 
+- name: Set platform/version specific variables
+  include_vars: "{{ __network_vars_file }}"
+  loop:
+    - "{{ ansible_facts['os_family'] }}.yml"
+    - "{{ ansible_facts['distribution'] }}.yml"
+    - >-
+      {{ ansible_facts['distribution'] ~ '_' ~
+      ansible_facts['distribution_major_version'] }}.yml
+    - >-
+      {{ ansible_facts['distribution'] ~ '_' ~
+      ansible_facts['distribution_version'] }}.yml
+  vars:
+    __network_vars_file: "{{ role_path }}/vars/{{ item }}"
+  when: __network_vars_file is file
+
 - name: Determine if system is ostree and set flag
   when: not __network_is_ostree is defined
   block:

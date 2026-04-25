@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: BSD-3-Clause
+---
+# Platform-specific defaults - override in vars/<os_family>.yml
+
+# GObject Python bindings package suffix
+# RHEL/Fedora: python3-gobject-base
+# SUSE: python3-gobject (no -base suffix)
+__network_gobject_package_suffix: "-base"
+
+# Extra packages needed for NetworkManager GObject Introspection
+# On SUSE, the NM GIR typelib is a separate package
+__network_packages_default_nm_extra: []
